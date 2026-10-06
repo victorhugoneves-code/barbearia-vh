@@ -1,0 +1,265 @@
+/* ---------- Base ---------- */
+:root {
+  --fundo: #121212;
+  --superficie: #1c1c1c;
+  --texto: #f2f2f2;
+  --texto-suave: #b8b8b8;
+  --dourado: #c9a24b;
+  --altura-menu: 64px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;               /* rolagem suave ao clicar no menu */
+  scroll-padding-top: var(--altura-menu); /* evita o menu cobrir o título da seção */
+}
+
+body {
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+}
+
+a {
+  color: var(--dourado);
+}
+
+/* ---------- Menu fixo ---------- */
+.menu {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  height: var(--altura-menu);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  background: rgba(18, 18, 18, 0.95);
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.menu-logo {
+  color: var(--dourado);
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-decoration: none;
+}
+
+.menu ul {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+}
+
+.menu ul a {
+  color: var(--texto);
+  text-decoration: none;
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.menu ul a:hover {
+  color: var(--dourado);
+  border-color: var(--dourado);
+}
+
+/* Link da seção que está na tela (classe "ativo" é colocada pelo script.js) */
+.menu ul a.ativo {
+  color: var(--dourado);
+  border-color: var(--dourado);
+}
+
+/* Botão do menu: só aparece no celular */
+.menu-botao {
+  display: none;
+  background: none;
+  border: 1px solid #2a2a2a;
+  border-radius: 6px;
+  color: var(--texto);
+  font-size: 1.4rem;
+  line-height: 1;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.menu-botao:hover {
+  color: var(--dourado);
+  border-color: var(--dourado);
+}
+
+@media (max-width: 640px) {
+  .menu-botao {
+    display: block;
+  }
+
+  /* Só esconde a lista se o JavaScript estiver funcionando (classe "js" no <html>) */
+  .js .menu ul {
+    display: none;
+    position: absolute;
+    top: var(--altura-menu);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    padding: 8px 24px 16px;
+    background: rgba(18, 18, 18, 0.98);
+    border-bottom: 1px solid #2a2a2a;
+  }
+
+  .js .menu ul.aberto {
+    display: flex;
+  }
+
+  .menu ul li a {
+    display: inline-block;
+    padding: 10px 0;
+  }
+}
+
+/* ---------- Cabeçalho ---------- */
+header {
+  text-align: center;
+  padding: 90px 20px 70px;
+  background: linear-gradient(180deg, #1f1f1f, var(--fundo));
+}
+
+header h1 {
+  font-size: clamp(2.2rem, 6vw, 3.6rem);
+  color: var(--dourado);
+  letter-spacing: 2px;
+}
+
+header p {
+  margin-top: 8px;
+  font-size: 1.2rem;
+  color: var(--texto-suave);
+}
+
+/* ---------- Seções ---------- */
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+section {
+  padding: 50px 0;
+}
+
+section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 28px;
+}
+
+section h2::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 3px;
+  margin-top: 8px;
+  background: var(--dourado);
+}
+
+/* ---------- Cartões de serviço ---------- */
+.cartoes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+.servico {
+  background: var(--superficie);
+  border: 1px solid #2a2a2a;
+  border-radius: 10px;
+  padding: 24px;
+  transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+}
+
+.servico:hover {
+  transform: translateY(-6px);
+  border-color: var(--dourado);
+  box-shadow: 0 10px 24px rgba(201, 162, 75, 0.18);
+}
+
+.servico h3 {
+  color: var(--dourado);
+  margin-bottom: 12px;
+}
+
+.servico ul {
+  list-style: none;
+}
+
+.servico li {
+  padding: 6px 0;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.servico li:last-child {
+  border-bottom: none;
+}
+
+/* ---------- Contato ---------- */
+.contato-caixa {
+  background: var(--superficie);
+  border-left: 4px solid var(--dourado);
+  border-radius: 6px;
+  padding: 20px 24px;
+}
+
+.contato-caixa p + p {
+  margin-top: 8px;
+}
+
+/* ---------- Rodapé ---------- */
+footer {
+  text-align: center;
+  padding: 28px 20px;
+  color: var(--texto-suave);
+  font-size: 0.9rem;
+  border-top: 1px solid #2a2a2a;
+}
+
+.aviso-demo {
+  margin-top: 6px;
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
+/* ---------- Animação de entrada ---------- */
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+header h1,
+header p,
+.servico,
+.contato-caixa {
+  animation: aparecer 0.7s ease-out both;
+}
+
+header p { animation-delay: 0.15s; }
+.servico:nth-child(1) { animation-delay: 0.2s; }
+.servico:nth-child(2) { animation-delay: 0.35s; }
+.servico:nth-child(3) { animation-delay: 0.5s; }
+
+/* Quem prefere menos movimento no sistema não vê as animações */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation: none !important; transition: none !important; }
+}
